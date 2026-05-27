@@ -108,8 +108,8 @@
           "OnComponentStart": null,
           "OnComponentUpdate": null,
           "SkyIndirectLighting": true,
-          "SkyMaterial": "materials/skybox/skybox_day_01.vmat",
-          "Tint": "1,1,1,1"
+          "SkyMaterial": "materials/skybox/skybox_dark_01.vmat",
+          "Tint": "1,0.25,0,1"
         },
         {
           "__type": "Sandbox.EnvmapProbe",
@@ -138,7 +138,7 @@
           "Projection": "Sphere",
           "Resolution": "Small",
           "Texture": "textures/cubemaps/default2.vtex",
-          "TintColor": "1,1,1,1",
+          "TintColor": "0.9907,0.60732,0.03226,1",
           "UpdateStrategy": "OnEnabled",
           "ZFar": 4096,
           "ZNear": 16
@@ -187,7 +187,7 @@
             "AfterUILayer": false
           },
           "RenderType": "On",
-          "Tint": "0.39546,0.51163,0.27128,1"
+          "Tint": "0,0,0,1"
         },
         {
           "__type": "Sandbox.BoxCollider",
@@ -552,7 +552,7 @@
       "__guid": "411d85e6-1a59-431b-a159-91a62c028d5c",
       "__version": 2,
       "Flags": 0,
-      "Name": "Controller",
+      "Name": "Player Controller",
       "Position": "-139.408981,25.7251892,30.4294815",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
@@ -596,6 +596,7 @@
           "OnComponentUpdate": null,
           "OverrideMassCenter": true,
           "RigidbodyFlags": "DisableCollisionSounds",
+          "SleepThreshold": 2,
           "StartAsleep": false
         },
         {
@@ -609,6 +610,7 @@
             "prefab": "fish.prefab"
           },
           "FishPullPower": 10,
+          "Hook": null,
           "MaxLineDistance": 1300,
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
@@ -623,72 +625,126 @@
           "WinDistance": 40
         }
       ],
-      "Children": [
+      "Children": []
+    },
+    {
+      "__guid": "90365620-98c1-4b7c-8c8b-686a137117c6",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "fishing_player",
+      "Position": "-88.9571228,36.9175949,0.0896992832",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
         {
-          "__guid": "5d5614ca-7acb-4d54-9090-1e0e62455ec8",
-          "__version": 2,
+          "__type": "Sandbox.Prop",
+          "__guid": "01c33a50-0624-4a5b-a280-456f91c4302a",
+          "__enabled": true,
           "Flags": 0,
-          "Name": "Cube",
-          "Position": "0,0,0",
-          "Rotation": "0,0,0,1",
-          "Scale": "1,1,1",
-          "Tags": "",
-          "Enabled": true,
-          "NetworkMode": 2,
-          "NetworkFlags": 0,
-          "NetworkOrphaned": 0,
-          "NetworkTransmit": true,
-          "OwnerTransfer": 1,
-          "Components": [
-            {
-              "__type": "Sandbox.SkinnedModelRenderer",
-              "__guid": "71e9362c-0a49-4778-b9f4-16fc72f4d9ef",
-              "__enabled": true,
-              "Flags": 0,
-              "AnimationGraph": null,
-              "BodyGroups": 341,
-              "BoneMergeTarget": null,
-              "CreateAttachments": false,
-              "CreateBoneObjects": false,
-              "LodOverride": null,
-              "MaterialGroup": null,
-              "MaterialOverride": null,
-              "Materials": null,
-              "Model": "models/citizen/citizen.vmdl",
-              "Morphs": {},
-              "OnComponentDestroy": null,
-              "OnComponentDisabled": null,
-              "OnComponentEnabled": null,
-              "OnComponentFixedUpdate": null,
-              "OnComponentStart": null,
-              "OnComponentUpdate": null,
-              "Parameters": {
-                "bools": {},
-                "ints": {},
-                "floats": {},
-                "vectors": {},
-                "rotations": {}
-              },
-              "PlaybackRate": 1,
-              "RenderOptions": {
-                "GameLayer": true,
-                "OverlayLayer": false,
-                "BloomLayer": false,
-                "AfterUILayer": false
-              },
-              "RenderType": "On",
-              "Sequence": {
-                "Name": null,
-                "Looping": true,
-                "Blending": false
-              },
-              "Tint": "1,1,1,1",
-              "UseAnimGraph": true
-            }
-          ],
-          "Children": []
+          "BodyGroups": 341,
+          "Health": 0,
+          "IsStatic": false,
+          "MaterialGroup": null,
+          "Model": "player/fishing_player.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnPropBreak": null,
+          "OnPropTakeDamage": null,
+          "StartAsleep": false,
+          "Tint": "1,1,1,1"
+        },
+        {
+          "__type": "Sandbox.SkinnedModelRenderer",
+          "__guid": "dbe4ffe8-607b-46a6-8df7-0b0df8019016",
+          "__enabled": true,
+          "Flags": 0,
+          "AnimationGraph": null,
+          "BodyGroups": 341,
+          "BoneMergeTarget": null,
+          "CreateAttachments": false,
+          "CreateBoneObjects": false,
+          "LodOverride": null,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/dev/black_cheap.vmat",
+          "Materials": null,
+          "Model": "player/fishing_player.vmdl",
+          "Morphs": {},
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Parameters": {
+            "bools": {},
+            "ints": {},
+            "floats": {},
+            "vectors": {},
+            "rotations": {}
+          },
+          "PlaybackRate": 1,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Sequence": {
+            "Name": null,
+            "Looping": true,
+            "Blending": false
+          },
+          "Tint": "1,1,1,1",
+          "UseAnimGraph": true
+        },
+        {
+          "__type": "Sandbox.ModelPhysics",
+          "__guid": "2038f5b7-0f62-4511-a35c-1049aacf9175",
+          "__enabled": false,
+          "Flags": 0,
+          "Bodies": [],
+          "IgnoreRoot": false,
+          "Joints": [],
+          "Locking": {
+            "X": false,
+            "Y": false,
+            "Z": false,
+            "Pitch": false,
+            "Yaw": false,
+            "Roll": false
+          },
+          "Model": "player/fishing_player.vmdl",
+          "MotionEnabled": true,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PhysicsWereCreated": false,
+          "Renderer": {
+            "_type": "component",
+            "component_id": "dbe4ffe8-607b-46a6-8df7-0b0df8019016",
+            "go": "90365620-98c1-4b7c-8c8b-686a137117c6",
+            "component_type": "SkinnedModelRenderer"
+          },
+          "RigidbodyFlags": 0,
+          "StartAsleep": false
         }
-      ]
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
@@ -713,17 +769,14 @@
       "CustomBounds": false
     },
     "GameObjectSystems": {
-      "Sandbox.MovieMaker.MovieRecorderSystem": {
-        "DisableClientRecording": false
+      "Sandbox.SelectionSetsSystem": {
+        "Data": {
+          "SelectionSets": []
+        }
       },
       "Sandbox.Clutter.ClutterGridSystem": {
         "Storage": {
           "$blob": "5ebdd846-0f89-4ce1-a11d-72312425e5a1"
-        }
-      },
-      "Sandbox.SelectionSetsSystem": {
-        "Data": {
-          "SelectionSets": []
         }
       }
     }

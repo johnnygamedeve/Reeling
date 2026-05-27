@@ -34,6 +34,8 @@ public sealed class FishingPlayer : Component
 	//Fish references
 	[Property] public GameObject FishPrefab { get; set; }	
 	public Fish HookedFish { get; private set; }
+	[Property] public GameObject Hook { get; set; }
+
 
 	protected override void OnUpdate()
 	{
@@ -75,6 +77,7 @@ public sealed class FishingPlayer : Component
 				LineDistance = MathX.Clamp( LineDistance, 0f, MaxLineDistance );
 
 				HookedFish.WorldPosition = WorldPosition + WorldRotation.Forward * LineDistance;
+				Hook.WorldPosition = HookedFish.WorldPosition;   
 
 				//this reeling decides if the speed is high enough to create tension
 				bool reelingFast = MathF.Abs( ReelAngularVelocity ) > 5f;
