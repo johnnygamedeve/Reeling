@@ -136,6 +136,7 @@
           "OnComponentUpdate": null,
           "Priority": 0,
           "Projection": "Sphere",
+          "RenderExcludeTags": "",
           "Resolution": "Small",
           "Texture": "textures/cubemaps/default2.vtex",
           "TintColor": "0.9907,0.60732,0.03226,1",
@@ -335,12 +336,7 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "Player": {
-            "_type": "component",
-            "component_id": "2b2caca6-75fa-4e6b-86eb-47954c3a7a09",
-            "go": "411d85e6-1a59-431b-a159-91a62c028d5c",
-            "component_type": "FishingPlayer"
-          },
+          "Player": null,
           "TransitionSpeed": 3
         }
       ],
@@ -549,85 +545,6 @@
       "Children": []
     },
     {
-      "__guid": "411d85e6-1a59-431b-a159-91a62c028d5c",
-      "__version": 2,
-      "Flags": 0,
-      "Name": "Player Controller",
-      "Position": "-139.408981,25.7251892,30.4294815",
-      "Rotation": "0,0,0,1",
-      "Scale": "1,1,1",
-      "Tags": "",
-      "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkFlags": 0,
-      "NetworkOrphaned": 0,
-      "NetworkTransmit": true,
-      "OwnerTransfer": 1,
-      "Components": [
-        {
-          "__type": "Sandbox.Rigidbody",
-          "__guid": "d627983e-c145-4b94-ab9e-3ba0f171bfe5",
-          "__enabled": true,
-          "Flags": 0,
-          "AngularDamping": 1,
-          "EnableImpactDamage": true,
-          "EnhancedCcd": false,
-          "Gravity": true,
-          "GravityScale": 1,
-          "ImpactDamage": 0,
-          "LinearDamping": 0.1,
-          "Locking": {
-            "X": false,
-            "Y": false,
-            "Z": false,
-            "Pitch": true,
-            "Yaw": true,
-            "Roll": true
-          },
-          "MassCenterOverride": "0,0,36",
-          "MassOverride": 500,
-          "MinImpactDamageSpeed": 500,
-          "MotionEnabled": true,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "OverrideMassCenter": true,
-          "RigidbodyFlags": "DisableCollisionSounds",
-          "SleepThreshold": 2,
-          "StartAsleep": false
-        },
-        {
-          "__type": "FishingPlayer",
-          "__guid": "2b2caca6-75fa-4e6b-86eb-47954c3a7a09",
-          "__enabled": true,
-          "Flags": 512,
-          "CastDistance": 1000,
-          "FishPrefab": {
-            "_type": "gameobject",
-            "prefab": "fish.prefab"
-          },
-          "FishPullPower": 10,
-          "Hook": null,
-          "MaxLineDistance": 1300,
-          "OnComponentDestroy": null,
-          "OnComponentDisabled": null,
-          "OnComponentEnabled": null,
-          "OnComponentFixedUpdate": null,
-          "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "ReelDeadzone": 0.05,
-          "ReelInPower": 10,
-          "TensionBuildRate": 1,
-          "TensionDecayRate": 0.4,
-          "WinDistance": 40
-        }
-      ],
-      "Children": []
-    },
-    {
       "__guid": "90365620-98c1-4b7c-8c8b-686a137117c6",
       "__version": 2,
       "Flags": 0,
@@ -742,9 +659,441 @@
           },
           "RigidbodyFlags": 0,
           "StartAsleep": false
+        },
+        {
+          "__type": "FishingPlayer",
+          "__guid": "0fdbcce1-fcc4-44a9-9f95-209824b3a764",
+          "__enabled": true,
+          "Flags": 0,
+          "CastDistance": 1000,
+          "CrankBoneName": "Crank",
+          "FishPrefab": {
+            "_type": "gameobject",
+            "prefab": "fish.prefab"
+          },
+          "FishPullPower": 10,
+          "HandBoneName": "hold_L",
+          "Hook": {
+            "_type": "gameobject",
+            "prefab": "blueprints/hook.prefab"
+          },
+          "MaxLineDistance": 1300,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PlayerModel": {
+            "_type": "component",
+            "component_id": "dbe4ffe8-607b-46a6-8df7-0b0df8019016",
+            "go": "90365620-98c1-4b7c-8c8b-686a137117c6",
+            "component_type": "SkinnedModelRenderer"
+          },
+          "ReelDeadzone": 0.05,
+          "ReelInPower": 10,
+          "RodObject": {
+            "_type": "gameobject",
+            "prefab": "blueprints/rod.prefab"
+          },
+          "TensionBuildRate": 1,
+          "TensionDecayRate": 0.4,
+          "WinDistance": 40
+        },
+        {
+          "__type": "Sandbox.LineRenderer",
+          "__guid": "f32ef656-564d-4d51-88af-9a4e126f3650",
+          "__enabled": true,
+          "Flags": 0,
+          "Additive": false,
+          "AutoCalculateNormals": true,
+          "CastShadows": true,
+          "Color": {
+            "blend": "Linear",
+            "color": [
+              {
+                "t": 0.5,
+                "c": "0,1,1,1"
+              }
+            ],
+            "alpha": []
+          },
+          "CylinderSegments": 12,
+          "DepthFeather": 0,
+          "EndCap": "None",
+          "Face": "Camera",
+          "FogStrength": 1,
+          "Lighting": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Opaque": true,
+          "Points": [],
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "SplineBias": 0,
+          "SplineContinuity": 0,
+          "SplineInterpolation": 0,
+          "SplineTension": 0,
+          "StartCap": "None",
+          "Texturing": {
+            "Texture": null,
+            "Material": null,
+            "WorldSpace": true,
+            "UnitsPerTexture": 10,
+            "Scale": 1,
+            "Offset": 0,
+            "Scroll": 0,
+            "FilterMode": "Anisotropic",
+            "TextureAddressMode": "Wrap",
+            "Clamp": false
+          },
+          "UseVectorPoints": true,
+          "VectorPoints": [],
+          "Width": [
+            {
+              "x": 0.5,
+              "y": 5,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ],
+          "Wireframe": false
+        },
+        {
+          "__type": "FishingLine",
+          "__guid": "7547cb64-770d-4120-9180-4085eb537f37",
+          "__enabled": true,
+          "Flags": 0,
+          "Gravity": 1400,
+          "Hook": null,
+          "Iterations": 20,
+          "MinLineLength": 20,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "Player": {
+            "_type": "component",
+            "component_id": "0fdbcce1-fcc4-44a9-9f95-209824b3a764",
+            "go": "90365620-98c1-4b7c-8c8b-686a137117c6",
+            "component_type": "FishingPlayer"
+          },
+          "RodTip": null,
+          "SegmentCount": 12
         }
       ],
-      "Children": []
+      "Children": [
+        {
+          "__guid": "d7fb1d8b-0aca-4524-9a7c-c51f1aad9916",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Line",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.LineRenderer",
+              "__guid": "265f48ad-2244-46d0-b0e1-933fb9e3a2f5",
+              "__enabled": true,
+              "Flags": 0,
+              "Additive": false,
+              "AutoCalculateNormals": true,
+              "CastShadows": true,
+              "Color": {
+                "blend": "Linear",
+                "color": [
+                  {
+                    "t": 0.5,
+                    "c": "1,1,1,1"
+                  }
+                ],
+                "alpha": []
+              },
+              "CylinderSegments": 12,
+              "DepthFeather": 0,
+              "EndCap": "Rounded",
+              "Face": "Camera",
+              "FogStrength": 1,
+              "Lighting": false,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Opaque": false,
+              "Points": [
+                {
+                  "_type": "gameobject",
+                  "go": "c1ddf6b4-b4fb-458d-897e-efae524258c9"
+                },
+                {
+                  "_type": "gameobject",
+                  "go": "8cbe93eb-9d4b-4c4c-bf72-bc1db0f684f8"
+                },
+                {
+                  "_type": "gameobject",
+                  "go": "fff8a80b-851b-468b-a20c-c24948d98768"
+                },
+                {
+                  "_type": "gameobject",
+                  "go": "14ea750a-4cdf-4841-9823-20d1c54a00fe"
+                }
+              ],
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "SplineBias": 0,
+              "SplineContinuity": 0,
+              "SplineInterpolation": 8,
+              "SplineTension": 0,
+              "StartCap": "Rounded",
+              "Texturing": {
+                "Texture": null,
+                "Material": null,
+                "WorldSpace": true,
+                "UnitsPerTexture": 10,
+                "Scale": 1,
+                "Offset": 0,
+                "Scroll": 0,
+                "FilterMode": "Anisotropic",
+                "TextureAddressMode": "Wrap",
+                "Clamp": false
+              },
+              "UseVectorPoints": true,
+              "VectorPoints": [],
+              "Width": [
+                {
+                  "x": 0,
+                  "y": 1,
+                  "in": 0,
+                  "out": 0,
+                  "mode": "Mirrored"
+                }
+              ],
+              "Wireframe": false
+            },
+            {
+              "__type": "FishingLine",
+              "__guid": "c23c2278-ef94-4c9d-93ef-b81102e2e7d8",
+              "__enabled": true,
+              "Flags": 0,
+              "Gravity": 1400,
+              "Hook": {
+                "_type": "gameobject",
+                "go": "2192bcfc-8c46-411d-aedd-8bfe10aa1dcd"
+              },
+              "Iterations": 20,
+              "MinLineLength": 20,
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "Player": {
+                "_type": "component",
+                "component_id": "0fdbcce1-fcc4-44a9-9f95-209824b3a764",
+                "go": "90365620-98c1-4b7c-8c8b-686a137117c6",
+                "component_type": "FishingPlayer"
+              },
+              "RodTip": {
+                "_type": "gameobject",
+                "go": "f7233d8e-85b4-4e0d-900a-3170f9777840"
+              },
+              "SegmentCount": 12
+            }
+          ],
+          "Children": [
+            {
+              "__guid": "c1ddf6b4-b4fb-458d-897e-efae524258c9",
+              "__version": 2,
+              "Flags": 0,
+              "Name": "Point 1",
+              "Position": "0,0,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkFlags": 0,
+              "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": []
+            },
+            {
+              "__guid": "8cbe93eb-9d4b-4c4c-bf72-bc1db0f684f8",
+              "__version": 2,
+              "Flags": 0,
+              "Name": "Point 2",
+              "Position": "-16,56,0",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkFlags": 0,
+              "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": []
+            },
+            {
+              "__guid": "fff8a80b-851b-468b-a20c-c24948d98768",
+              "__version": 2,
+              "Flags": 0,
+              "Name": "Point 3",
+              "Position": "16,56,48",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkFlags": 0,
+              "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": []
+            },
+            {
+              "__guid": "14ea750a-4cdf-4841-9823-20d1c54a00fe",
+              "__version": 2,
+              "Flags": 0,
+              "Name": "Point 4",
+              "Position": "0,0,48",
+              "Rotation": "0,0,0,1",
+              "Scale": "1,1,1",
+              "Tags": "",
+              "Enabled": true,
+              "NetworkMode": 2,
+              "NetworkFlags": 0,
+              "NetworkOrphaned": 0,
+              "NetworkTransmit": true,
+              "OwnerTransfer": 1,
+              "Components": [],
+              "Children": []
+            }
+          ]
+        },
+        {
+          "__guid": "f7233d8e-85b4-4e0d-900a-3170f9777840",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "Tip",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "e77781f6-72c1-4274-9952-c7bf63123f43",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/dev/box.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        },
+        {
+          "__guid": "2192bcfc-8c46-411d-aedd-8bfe10aa1dcd",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "hook",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [
+            {
+              "__type": "Sandbox.ModelRenderer",
+              "__guid": "7fc3ba74-1a52-4f80-abd6-309f87b2c544",
+              "__enabled": true,
+              "Flags": 0,
+              "BodyGroups": 18446744073709551615,
+              "CreateAttachments": false,
+              "LodOverride": null,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Materials": null,
+              "Model": "models/dev/box.vmdl",
+              "OnComponentDestroy": null,
+              "OnComponentDisabled": null,
+              "OnComponentEnabled": null,
+              "OnComponentFixedUpdate": null,
+              "OnComponentStart": null,
+              "OnComponentUpdate": null,
+              "RenderOptions": {
+                "GameLayer": true,
+                "OverlayLayer": false,
+                "BloomLayer": false,
+                "AfterUILayer": false
+              },
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": []
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -769,14 +1118,14 @@
       "CustomBounds": false
     },
     "GameObjectSystems": {
-      "Sandbox.SelectionSetsSystem": {
-        "Data": {
-          "SelectionSets": []
-        }
-      },
       "Sandbox.Clutter.ClutterGridSystem": {
         "Storage": {
           "$blob": "5ebdd846-0f89-4ce1-a11d-72312425e5a1"
+        }
+      },
+      "Sandbox.SelectionSetsSystem": {
+        "Data": {
+          "SelectionSets": []
         }
       }
     }

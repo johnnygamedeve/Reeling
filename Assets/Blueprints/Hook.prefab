@@ -1,0 +1,168 @@
+{
+  "RootObject": {
+    "__guid": "a93bc2cd-5c2e-4519-92f2-f6ca20cffff1",
+    "__version": 2,
+    "Flags": 0,
+    "Name": "hook",
+    "Position": "0,0,0",
+    "Rotation": "0,0,0,1",
+    "Scale": "1,1,1",
+    "Tags": "",
+    "Enabled": true,
+    "NetworkMode": 2,
+    "NetworkFlags": 0,
+    "NetworkOrphaned": 0,
+    "NetworkTransmit": true,
+    "OwnerTransfer": 1,
+    "Components": [
+      {
+        "__type": "Sandbox.ModelRenderer",
+        "__guid": "bac53616-2176-423d-90eb-a43f94330a84",
+        "__enabled": true,
+        "Flags": 0,
+        "BodyGroups": 18446744073709551615,
+        "CreateAttachments": false,
+        "LodOverride": null,
+        "MaterialGroup": null,
+        "MaterialOverride": null,
+        "Materials": null,
+        "Model": "blueprints/hook.vmdl",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "RenderType": "On",
+        "Tint": "1,1,1,1"
+      },
+      {
+        "__type": "Sandbox.LineRenderer",
+        "__guid": "fea3d3c8-bafa-438b-83cf-9338d8acc8cb",
+        "__enabled": true,
+        "Flags": 0,
+        "Additive": false,
+        "AutoCalculateNormals": true,
+        "CastShadows": true,
+        "Color": {
+          "blend": "Linear",
+          "color": [
+            {
+              "t": 0.5,
+              "c": "0,1,1,1"
+            }
+          ],
+          "alpha": []
+        },
+        "CylinderSegments": 12,
+        "DepthFeather": 0,
+        "EndCap": "None",
+        "Face": "Camera",
+        "FogStrength": 1,
+        "Lighting": false,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Opaque": true,
+        "Points": [],
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
+        "SplineBias": 0,
+        "SplineContinuity": 0,
+        "SplineInterpolation": 0,
+        "SplineTension": 0,
+        "StartCap": "None",
+        "Texturing": {
+          "Texture": null,
+          "Material": null,
+          "WorldSpace": true,
+          "UnitsPerTexture": 10,
+          "Scale": 1,
+          "Offset": 0,
+          "Scroll": 0,
+          "FilterMode": "Anisotropic",
+          "TextureAddressMode": "Wrap",
+          "Clamp": false
+        },
+        "UseVectorPoints": true,
+        "VectorPoints": [],
+        "Width": [
+          {
+            "x": 0.5,
+            "y": 5,
+            "in": 0,
+            "out": 0,
+            "mode": "Mirrored"
+          }
+        ],
+        "Wireframe": false
+      },
+      {
+        "__type": "FishingLine",
+        "__guid": "b1910399-4d10-4a62-9917-22419f1391e0",
+        "__enabled": true,
+        "Flags": 0,
+        "Gravity": 1400,
+        "Hook": null,
+        "Iterations": 20,
+        "MinLineLength": 20,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "Player": {
+          "_type": "component",
+          "component_id": "0fdbcce1-fcc4-44a9-9f95-209824b3a764",
+          "go": "90365620-98c1-4b7c-8c8b-686a137117c6",
+          "component_type": "FishingPlayer"
+        },
+        "RodTip": null,
+        "SegmentCount": 12
+      }
+    ],
+    "Children": [],
+    "__properties": {
+      "NetworkInterpolation": true,
+      "TimeScale": 1,
+      "WantsSystemScene": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": false,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": "",
+        "DeferGeneration": false,
+        "CustomBounds": false
+      }
+    },
+    "__variables": []
+  },
+  "ResourceVersion": 2,
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "__references": [],
+  "__version": 2
+}

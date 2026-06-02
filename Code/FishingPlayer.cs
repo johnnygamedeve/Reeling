@@ -31,11 +31,46 @@ public sealed class FishingPlayer : Component
 
 	public bool IsFighting => _state == FishingState.Fighting;
 
+	//Rod and bones references
+	[Property] public SkinnedModelRenderer PlayerModel { get; set; }
+	[Property] public GameObject RodObject { get; set; }
+	private GameObject _rodInstance;
+
+	[Property] public string HandBoneName { get; set; } = "hold_L";
+	[Property] public string CrankBoneName { get; set; } = "Crank";
+
+	private GameObject handBoneObject;
+	private GameObject crankBoneObject;
+
 	//Fish references
 	[Property] public GameObject FishPrefab { get; set; }	
 	public Fish HookedFish { get; private set; }
 	[Property] public GameObject Hook { get; set; }
 
+	protected override void OnStart()
+	{
+
+		if ( PlayerModel != null )
+		{
+			handBoneObject = PlayerModel.GetBoneObject( HandBoneName );
+		}
+
+		if ( RodObject != null )
+		{
+			_rodInstance = RodObject.Clone( WorldPosition );
+		}
+
+		if ( _rodInstance != null && handBoneObject != null )
+		{
+			_rodInstance.SetParent( handBoneObject, true );
+		}
+
+		var rodRenderer = _rodInstance?.GetComponent<SkinnedModelRenderer>();
+		if ( rodRenderer != null )
+		{
+			crankBoneObject = rodRenderer.GetBoneObject( CrankBoneName );
+		}
+	}
 
 	protected override void OnUpdate()
 	{
