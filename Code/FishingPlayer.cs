@@ -12,6 +12,7 @@ public sealed class FishingPlayer : Component
 
 	private float _previousAngle;
 	private bool _hasPreviousAngle;
+	private bool isReelAnimPlaying;
 
 	[Property] public float CastDistance { get; set; } = 1000f;     // where fish spawns
 	[Property] public float MaxLineDistance { get; set; } = 1300f;  // where escape fires
@@ -53,23 +54,54 @@ public sealed class FishingPlayer : Component
 		if ( PlayerModel != null )
 		{
 			handBoneObject = PlayerModel.GetBoneObject( HandBoneName );
+
+			if ( !handBoneObject.IsValid() )
+			{
+				Log.Error( $"Could not find bone: {HandBoneName}" );
+				return;
+			}
+		}
+		else
+		{
+			Log.Warning( "PlayerModel not assigned, can't find hand bone for rod parenting." );
 		}
 
 		if ( RodObject != null )
 		{
 			_rodInstance = RodObject.Clone( WorldPosition );
 		}
+		else
+		{
+			Log.Warning( "RodObject not assigned, can't create rod instance." );
+		}
 
+		//Parent rod to hand bone, set initial position/rotation
 		if ( _rodInstance != null && handBoneObject != null )
 		{
-			_rodInstance.SetParent( handBoneObject, true );
+			_rodInstance.SetParent( handBoneObject, false );
+			_rodInstance.LocalPosition = new Vector3( 1, 5, -25 );
+			_rodInstance.LocalRotation = Rotation.From( new Angles( -15, 60, -6 ) );
+			Log.Info( _rodInstance.Parent == handBoneObject
+				? "Rod parented correctly"
+				: $"Rod parent failed. Parent is: {_rodInstance.Parent?.Name ?? "null"}" );
+
+		}
+		else
+		{
+			Log.Warning( "Cannot parent rod: missing rod instance or hand bone." );
 		}
 
 		var rodRenderer = _rodInstance?.GetComponent<SkinnedModelRenderer>();
+
+		//For later rotation of rod crank
 		if ( rodRenderer != null )
 		{
 			crankBoneObject = rodRenderer.GetBoneObject( CrankBoneName );
 		}
+		else		{
+			Log.Warning( "Rod instance does not have a SkinnedModelRenderer, can't find crank bone." );
+		}
+
 	}
 
 	protected override void OnUpdate()
@@ -106,9 +138,24 @@ public sealed class FishingPlayer : Component
 				UpdateReel();
 
 				if ( MathF.Abs( ReelAngularVelocity ) > 1f )
+				{
 					LineDistance -= MathF.Abs( ReelAngularVelocity ) * ReelInPower * Time.Delta;
-					
-				LineDistance += HookedFish.PullStrength * FishPullPower * Time.Delta;
+					// when reel starts
+					PlayerModel.Parameters.Set( "b_reel", true );
+
+
+					if ( !isReelAnimPlaying ) { }
+					//	PlayReelAnimation();
+
+					//	RotateCrankBone();
+				}
+				else
+				{
+					// when reel stops
+					PlayerModel.Parameters.Set( "b_reel", false );
+				}
+
+					LineDistance += HookedFish.PullStrength * FishPullPower * Time.Delta;
 				LineDistance = MathX.Clamp( LineDistance, 0f, MaxLineDistance );
 
 				HookedFish.WorldPosition = WorldPosition + WorldRotation.Forward * LineDistance;
