@@ -33,7 +33,10 @@ public sealed class Fish : Component
 		_timer -= Time.Delta;
 		if ( _timer > 0 ) return;
 
-		if ( _state == BehaviorState.Resting ) EnterPull();
+		if ( _state == BehaviorState.Resting )
+        {
+			EnterPull();
+		}
 		else EnterRest();
 	}
 

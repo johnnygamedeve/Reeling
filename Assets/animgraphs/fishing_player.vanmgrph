@@ -9,24 +9,177 @@
 			{
 				key = 
 				{
+					m_id = 20163273
+				}
+				value = 
+				{
+					_class = "CBlendAnimNode"
+					m_sName = "Unnamed"
+					m_vecPosition = [ 304.0, 32.0 ]
+					m_nNodeID = 
+					{
+						m_id = 20163273
+					}
+					m_sNote = ""
+					m_children = 
+					[
+						{
+							m_inputConnection = 
+							{
+								m_nodeID = 
+								{
+									m_id = 4294967295
+								}
+								m_outputID = 
+								{
+									m_id = 4294967295
+								}
+							}
+							m_name = "slow reel"
+							m_blendValue = 1.0
+						},
+						{
+							m_inputConnection = 
+							{
+								m_nodeID = 
+								{
+									m_id = 4294967295
+								}
+								m_outputID = 
+								{
+									m_id = 4294967295
+								}
+							}
+							m_name = "middle reel"
+							m_blendValue = 15.0
+						},
+						{
+							m_inputConnection = 
+							{
+								m_nodeID = 
+								{
+									m_id = 4294967295
+								}
+								m_outputID = 
+								{
+									m_id = 4294967295
+								}
+							}
+							m_name = "fast reel"
+							m_blendValue = 30.0
+						},
+						{
+							m_inputConnection = 
+							{
+								m_nodeID = 
+								{
+									m_id = 4294967295
+								}
+								m_outputID = 
+								{
+									m_id = 4294967295
+								}
+							}
+							m_name = "Idle"
+							m_blendValue = 0.0
+						},
+					]
+					m_blendValueSource = "Parameter"
+					m_param = 
+					{
+						m_id = 1478200608
+					}
+					m_blendKeyType = "BlendKey_UserValue"
+					m_bLockBlendOnReset = false
+					m_bSyncCycles = false
+					m_bLoop = true
+					m_bLockWhenWaning = true
+					m_damping = 
+					{
+						_class = "CAnimInputDamping"
+						m_speedFunction = "NoDamping"
+						m_fSpeedScale = 0.1
+						m_fMinSpeed = 1.0
+						m_fMaxTension = 10.0
+						m_fTension = 100.0
+						m_fDamping = 5.0
+					}
+				}
+			},
+			{
+				key = 
+				{
+					m_id = 239932191
+				}
+				value = 
+				{
+					_class = "CBoneMaskAnimNode"
+					m_sName = "Unnamed"
+					m_vecPosition = [ 608.0, -240.0 ]
+					m_nNodeID = 
+					{
+						m_id = 239932191
+					}
+					m_sNote = ""
+					m_weightListName = "Scale_Arms"
+					m_inputConnection1 = 
+					{
+						m_nodeID = 
+						{
+							m_id = 2040671498
+						}
+						m_outputID = 
+						{
+							m_id = 4294967295
+						}
+					}
+					m_inputConnection2 = 
+					{
+						m_nodeID = 
+						{
+							m_id = 20163273
+						}
+						m_outputID = 
+						{
+							m_id = 4294967295
+						}
+					}
+					m_blendSpace = "BlendSpace_Model"
+					m_bUseBlendScale = false
+					m_blendValueSource = "Parameter"
+					m_blendParameter = 
+					{
+						m_id = 4294967295
+					}
+					m_timingBehavior = "UseChild2"
+					m_flTimingBlend = 0.5
+					m_flRootMotionBlend = 1.0
+					m_footMotionTiming = "Child1"
+					m_bResetChild1 = true
+					m_bResetChild2 = true
+				}
+			},
+			{
+				key = 
+				{
 					m_id = 469522858
 				}
 				value = 
 				{
 					_class = "CBoneMaskAnimNode"
 					m_sName = "Unnamed"
-					m_vecPosition = [ 509.174133, 22.206972 ]
+					m_vecPosition = [ 96.0, -224.0 ]
 					m_nNodeID = 
 					{
 						m_id = 469522858
 					}
 					m_sNote = ""
-					m_weightListName = ""
+					m_weightListName = "Blend_UpperBody"
 					m_inputConnection1 = 
 					{
 						m_nodeID = 
 						{
-							m_id = 2040671498
+							m_id = 4294967295
 						}
 						m_outputID = 
 						{
@@ -51,33 +204,12 @@
 					{
 						m_id = 4294967295
 					}
-					m_timingBehavior = "UseChild2"
+					m_timingBehavior = "UseChild1"
 					m_flTimingBlend = 0.5
 					m_flRootMotionBlend = 0.0
 					m_footMotionTiming = "Child1"
 					m_bResetChild1 = true
 					m_bResetChild2 = true
-				}
-			},
-			{
-				key = 
-				{
-					m_id = 765143446
-				}
-				value = 
-				{
-					_class = "CSequenceAnimNode"
-					m_sName = "Unnamed"
-					m_vecPosition = [ 176.0, -160.0 ]
-					m_nNodeID = 
-					{
-						m_id = 765143446
-					}
-					m_sNote = ""
-					m_tagSpans = [  ]
-					m_sequenceName = "IdleAnim"
-					m_playbackSpeed = 1.0
-					m_bLoop = true
 				}
 			},
 			{
@@ -89,7 +221,7 @@
 				{
 					_class = "CSequenceAnimNode"
 					m_sName = "Unnamed"
-					m_vecPosition = [ 224.0, 80.0 ]
+					m_vecPosition = [ -160.0, -208.0 ]
 					m_nNodeID = 
 					{
 						m_id = 835349164
@@ -104,22 +236,54 @@
 			{
 				key = 
 				{
-					m_id = 940877120
+					m_id = 1035069827
 				}
 				value = 
 				{
-					_class = "CSequenceAnimNode"
+					_class = "CBoneMaskAnimNode"
 					m_sName = "Unnamed"
-					m_vecPosition = [ 160.0, -16.0 ]
+					m_vecPosition = [ 96.0, -96.0 ]
 					m_nNodeID = 
 					{
-						m_id = 940877120
+						m_id = 1035069827
 					}
 					m_sNote = ""
-					m_tagSpans = [  ]
-					m_sequenceName = "SlowReel"
-					m_playbackSpeed = 1.0
-					m_bLoop = false
+					m_weightListName = "Blend_UpperBody"
+					m_inputConnection1 = 
+					{
+						m_nodeID = 
+						{
+							m_id = 4294967295
+						}
+						m_outputID = 
+						{
+							m_id = 4294967295
+						}
+					}
+					m_inputConnection2 = 
+					{
+						m_nodeID = 
+						{
+							m_id = 835349164
+						}
+						m_outputID = 
+						{
+							m_id = 4294967295
+						}
+					}
+					m_blendSpace = "BlendSpace_Parent"
+					m_bUseBlendScale = false
+					m_blendValueSource = "Parameter"
+					m_blendParameter = 
+					{
+						m_id = 4294967295
+					}
+					m_timingBehavior = "UseChild1"
+					m_flTimingBlend = 0.5
+					m_flRootMotionBlend = 0.0
+					m_footMotionTiming = "Child1"
+					m_bResetChild1 = true
+					m_bResetChild2 = true
 				}
 			},
 			{
@@ -131,7 +295,7 @@
 				{
 					_class = "CRootAnimNode"
 					m_sName = "Unnamed"
-					m_vecPosition = [ 784.0, -16.0 ]
+					m_vecPosition = [ 736.0, -64.0 ]
 					m_nNodeID = 
 					{
 						m_id = 1331161887
@@ -141,7 +305,7 @@
 					{
 						m_nodeID = 
 						{
-							m_id = 469522858
+							m_id = 835349164
 						}
 						m_outputID = 
 						{
@@ -159,7 +323,7 @@
 				{
 					_class = "CStateMachineAnimNode"
 					m_sName = "Unnamed"
-					m_vecPosition = [ 336.0, -80.0 ]
+					m_vecPosition = [ 304.0, -128.0 ]
 					m_nNodeID = 
 					{
 						m_id = 2040671498
@@ -180,7 +344,7 @@
 											m_comparisonOp = 0
 											m_paramID = 
 											{
-												m_id = 828914417
+												m_id = 233568637
 											}
 											m_comparisonValue = 
 											{
@@ -189,7 +353,7 @@
 											}
 										},
 									]
-									m_blendDuration = 0.2
+									m_blendDuration = 0.0
 									m_destState = 
 									{
 										m_id = 884208723
@@ -200,8 +364,8 @@
 									m_bBlendCycle = false
 									m_blendCurve = 
 									{
-										m_vControlPoint1 = [ 0.5, 0.0 ]
-										m_vControlPoint2 = [ 0.5, 1.0 ]
+										m_vControlPoint1 = [ 0.0, 0.0 ]
+										m_vControlPoint2 = [ 1.0, 1.0 ]
 									}
 									m_bForceFootPlant = false
 									m_bDisabled = false
@@ -212,12 +376,12 @@
 							]
 							m_tags = [  ]
 							m_tagBehaviors = [  ]
-							m_name = "Idle"
+							m_name = "Fish aint pulling"
 							m_inputConnection = 
 							{
 								m_nodeID = 
 								{
-									m_id = 765143446
+									m_id = 469522858
 								}
 								m_outputID = 
 								{
@@ -228,7 +392,7 @@
 							{
 								m_id = 1386195209
 							}
-							m_position = [ -256.0, -64.0 ]
+							m_position = [ -240.0, -48.0 ]
 							m_bIsStartState = true
 							m_bIsEndtState = false
 							m_bIsPassthrough = false
@@ -248,7 +412,7 @@
 											m_comparisonOp = 0
 											m_paramID = 
 											{
-												m_id = 828914417
+												m_id = 233568637
 											}
 											m_comparisonValue = 
 											{
@@ -257,7 +421,7 @@
 											}
 										},
 									]
-									m_blendDuration = 0.2
+									m_blendDuration = 0.0
 									m_destState = 
 									{
 										m_id = 1386195209
@@ -268,8 +432,8 @@
 									m_bBlendCycle = false
 									m_blendCurve = 
 									{
-										m_vControlPoint1 = [ 0.5, 0.0 ]
-										m_vControlPoint2 = [ 0.5, 1.0 ]
+										m_vControlPoint1 = [ 0.0, 0.0 ]
+										m_vControlPoint2 = [ 1.0, 1.0 ]
 									}
 									m_bForceFootPlant = false
 									m_bDisabled = false
@@ -280,12 +444,12 @@
 							]
 							m_tags = [  ]
 							m_tagBehaviors = [  ]
-							m_name = "Reel"
+							m_name = "Fish pulling"
 							m_inputConnection = 
 							{
 								m_nodeID = 
 								{
-									m_id = 940877120
+									m_id = 1035069827
 								}
 								m_outputID = 
 								{
@@ -296,7 +460,7 @@
 							{
 								m_id = 884208723
 							}
-							m_position = [ 64.0, -48.0 ]
+							m_position = [ 48.0, -48.0 ]
 							m_bIsStartState = false
 							m_bIsEndtState = false
 							m_bIsPassthrough = false
@@ -317,7 +481,7 @@
 		[
 			{
 				_class = "CBoolAnimParameter"
-				m_name = "b_reel"
+				m_name = "b_reeling"
 				m_id = 
 				{
 					m_id = 828914417
@@ -326,6 +490,32 @@
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bDefaultValue = false
+			},
+			{
+				_class = "CBoolAnimParameter"
+				m_name = "b_pulling"
+				m_id = 
+				{
+					m_id = 233568637
+				}
+				m_previewButton = "ANIMPARAM_BUTTON_NONE"
+				m_bUseMostRecentValue = false
+				m_bAutoReset = false
+				m_bDefaultValue = false
+			},
+			{
+				_class = "CFloatAnimParameter"
+				m_name = "reel_speed"
+				m_id = 
+				{
+					m_id = 1478200608
+				}
+				m_previewButton = "ANIMPARAM_BUTTON_NONE"
+				m_bUseMostRecentValue = false
+				m_bAutoReset = false
+				m_fDefaultValue = 0.0
+				m_fMinValue = 0.0
+				m_fMaxValue = 30.0
 			},
 		]
 	}
@@ -366,7 +556,7 @@
 	}
 	m_previewModels = 
 	[
-		"models/citizen/citizen.vmdl",
+		"player/fishing_player.vmdl",
 	]
 	m_boneMergeModels = [  ]
 	m_cameraSettings = 

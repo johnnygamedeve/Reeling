@@ -9,10 +9,10 @@ public sealed class FishingPlayer : Component
 
 	public float ReelAngularVelocity { get; private set; }
 	public float AccumulatedRotation { get; private set; }
-
+	public float reelSpeed;
 	private float _previousAngle;
 	private bool _hasPreviousAngle;
-	private bool isReelAnimPlaying;
+//	private bool isReelAnimPlaying;
 
 	[Property] public float CastDistance { get; set; } = 1000f;     // where fish spawns
 	[Property] public float MaxLineDistance { get; set; } = 1300f;  // where escape fires
@@ -32,6 +32,9 @@ public sealed class FishingPlayer : Component
 
 	public bool IsFighting => _state == FishingState.Fighting;
 
+	bool reelingFast;
+	bool pulling;
+
 	//Rod and bones references
 	[Property] public SkinnedModelRenderer PlayerModel { get; set; }
 	[Property] public GameObject RodObject { get; set; }
@@ -42,6 +45,8 @@ public sealed class FishingPlayer : Component
 
 	private GameObject handBoneObject;
 	private GameObject crankBoneObject;
+	float crankAngle;
+	Rotation OriginalCrankRotation;
 
 	//Fish references
 	[Property] public GameObject FishPrefab { get; set; }	
@@ -97,6 +102,7 @@ public sealed class FishingPlayer : Component
 		if ( rodRenderer != null )
 		{
 			crankBoneObject = rodRenderer.GetBoneObject( CrankBoneName );
+			OriginalCrankRotation = crankBoneObject.LocalRotation;
 		}
 		else		{
 			Log.Warning( "Rod instance does not have a SkinnedModelRenderer, can't find crank bone." );
@@ -132,7 +138,6 @@ public sealed class FishingPlayer : Component
 				_state = FishingState.Fighting;
 				break;
 
-
 			case FishingState.Fighting:
 				// TODO: read fish.PullStrength, update tension/distance, check win/lose
 				UpdateReel();
@@ -141,35 +146,48 @@ public sealed class FishingPlayer : Component
 				{
 					LineDistance -= MathF.Abs( ReelAngularVelocity ) * ReelInPower * Time.Delta;
 					// when reel starts
-					PlayerModel.Parameters.Set( "b_reel", true );
+					PlayerModel.Parameters.Set( "b_reeling", true );
 
+					reelSpeed = MathX.Lerp( reelSpeed, MathF.Abs( ReelAngularVelocity ), Time.Delta * 10f );
+					PlayerModel.Parameters.Set( "reel_speed", reelSpeed );
 
-					if ( !isReelAnimPlaying ) { }
-					//	PlayReelAnimation();
+					Log.Info( $"reel ω = {reelSpeed:F2} rad/s" );
 
-					//	RotateCrankBone();
+					crankAngle += reelSpeed * 20f * Time.Delta;
+					
+					crankBoneObject.LocalRotation = OriginalCrankRotation * Rotation.FromPitch( crankAngle );
+
 				}
 				else
 				{
 					// when reel stops
-					PlayerModel.Parameters.Set( "b_reel", false );
+					PlayerModel.Parameters.Set( "b_reeling", false );
+					PlayerModel.Parameters.Set( "reel_speed", 0 );
+					PlayerModel.Parameters.Set( "b_pulling", false );
 				}
 
-					LineDistance += HookedFish.PullStrength * FishPullPower * Time.Delta;
+				LineDistance += HookedFish.PullStrength * FishPullPower * Time.Delta;
 				LineDistance = MathX.Clamp( LineDistance, 0f, MaxLineDistance );
 
 				HookedFish.WorldPosition = WorldPosition + WorldRotation.Forward * LineDistance;
 				Hook.WorldPosition = HookedFish.WorldPosition;   
 
 				//this reeling decides if the speed is high enough to create tension
-				bool reelingFast = MathF.Abs( ReelAngularVelocity ) > 5f;
+				reelingFast = MathF.Abs( ReelAngularVelocity ) > 8f;
 
-				bool pulling = HookedFish.PullStrength > 0.1f;
+				pulling = HookedFish.PullStrength > 0.1f;
 
-				if( pulling )
+				if ( pulling )
+				{
+					PlayerModel.Parameters.Set( "b_pulling", true );
 					Log.Info( "FISH IS ESCAPING!!!!" );
+				}
 				else
+				{
+					PlayerModel.Parameters.Set( "b_pulling", false );
 					Log.Info( "REEL!!!!" );
+				}
+
 
 				if ( reelingFast && pulling )
 					Tension += TensionBuildRate * Time.Delta;
@@ -178,11 +196,13 @@ public sealed class FishingPlayer : Component
 
 				Tension = MathX.Clamp( Tension, 0f, 1f );
 
-				Log.Info( $"Tension: {Tension}" );
+				//Log.Info( $"Tension: {Tension}" );
 
 				if ( Tension >= 1f )
 				{
 					Log.Info( "Line broke!" );
+					PlayerModel.Parameters.Set( "reel_speed", 0 );
+					PlayerModel.Parameters.Set( "b_pulling", false );
 					EndFight();
 					return;  // ← stop here, don't fall through to win/escape checks
 				}
@@ -190,11 +210,15 @@ public sealed class FishingPlayer : Component
 				if ( LineDistance <= WinDistance )
 				{
 					Log.Info( "Caught!" );
+					PlayerModel.Parameters.Set( "reel_speed", 0 );
+					PlayerModel.Parameters.Set( "b_pulling", false );
 					EndFight();
 				}
 				else if ( LineDistance >= MaxLineDistance )
 				{
 					Log.Info( "Fish escaped!" );
+					PlayerModel.Parameters.Set( "reel_speed", 0 );
+					PlayerModel.Parameters.Set( "b_pulling", false );
 					EndFight();
 				}
 				break;
@@ -236,6 +260,7 @@ public sealed class FishingPlayer : Component
 		if ( MathF.Abs( ReelAngularVelocity ) > 1f )   // tune threshold
 		{
 			AccumulatedRotation += MathF.Abs( delta );
+
 		}
 
 		_previousAngle = currentAngle;

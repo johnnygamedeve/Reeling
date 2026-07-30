@@ -33,12 +33,12 @@
 					{
 						_class = "AnimFile"
 						name = "SlowReel"
-						activity_name = "-SlowReel"
+						activity_name = ""
 						activity_weight = 1
 						weight_list_name = ""
 						fade_in_time = 0.2
 						fade_out_time = 0.2
-						looping = true
+						looping = false
 						delta = false
 						worldSpace = false
 						hidden = false
